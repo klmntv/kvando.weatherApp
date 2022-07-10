@@ -1,0 +1,15 @@
+.weather {
+    padding: 20px;
+    width: 100%;
+    font-size: 32px;
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .temp {
+        font-size: 80px;
+    }
+}
