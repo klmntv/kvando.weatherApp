@@ -1,10 +1,14 @@
+import 'normalize.css'
 import './App.css'
-import Weather from './components/Weather'
+import TodayWeather from './components/Weather'
+
 function App() {
 
+  
+  
   return (
-    <div className="App">
-      <Weather/>
+    <div className="App" >
+      <TodayWeather />
     </div>
   )
 }

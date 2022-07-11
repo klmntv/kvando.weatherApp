@@ -1,18 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  color:aliceblue;
+  font-family:'Outfit', -apple-system, 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+input {
+  text-align:center;
+  color:#fff;
+  display: block;
+  align-self: center;
+  padding: 10px;
+  margin: 20px 0px 0px 0px;
+  width: 30%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 .App {
-  height: 100vh;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 5s ease infinite;
+  
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(-45deg,  #FB5607, #FF006E, #23d5ab, #3A86FF, #8338EC);
+  background-size: 500% 500%;
+  animation: gradient 15s ease-in-out infinite;
 }
+
+input::hover{
+background: rgba(255, 255, 255, 0.5);
+  }
+
+input::placeholder {
+  color: #fff;
+}
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
