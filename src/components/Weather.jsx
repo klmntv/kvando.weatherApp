@@ -2,31 +2,68 @@ import React, {useState} from 'react'
 import s from './Weather.module.scss'
 import axios from 'axios'
 
-const TodayWeather = ( ) => {
+const TodayWeather = () => {
+    
     const [data,setData] = useState({})
     const [location,setLocation] = useState('')
+    const [lat,setLat] = useState(null);
+    const [lon,setLon] = useState(null);
+ 
+    const getGeolocation = () => {
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setLat(position.coords.latitude);
+                setLon(position.coords.longitude);
+            },
+                () => {
+                    setStatus('Unable to retrieve your location');
+                });
+        } else {
+            setStatus('Geolocation is not supproted by your broswer')
+        }
+    }
+
+    React.useEffect(() => {
+        const fetchCurrentWeather = () => {
+            fetch(urlForCoord)
+                .then((response) => response.json())
+                .then((data) => {
+                    setData(data)
+                });
+        };
+
+        if (lat && lon) {
+            fetchCurrentWeather();
+        }
+    },[lat,lon]);
+    
+    getGeolocation()
+    
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=5dbc1dc5eb96460925f3794ad1764fe8`
+    const urlForCoord = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5dbc1dc5eb96460925f3794ad1764fe8`
 
     const searchLocation = (event) => {
         if (event.key === 'Enter') {
             axios.get(url).then((response) => {
                 setData(response.data)
-                console.log(response.data)
             })
             setLocation('')
         }
     }
+    
     return (
 
         <div className={ s.weather }>
+
             <fieldset>
                 <input
                     type="text"
-                    value={ location }
                     onChange={ event => setLocation(event.target.value) }
                     onKeyPress={ searchLocation }
                     placeholder='Enter Location'
                 />
+            
                 <button>Subscribe</button>
                 <div>
                     <button className={ s.slider }></button>
@@ -38,9 +75,9 @@ const TodayWeather = ( ) => {
             <div className={ s.wrapper }>
 
                 <div className={ s.loc }>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28">
                         <path fill="#fff" d="M14 2.25c5.3847763 0 9.75 4.36522369 9.75 9.75 0 4.1196455-2.894567 8.6092677-8.6098042 13.5178507-.6558026.563242-1.6246152.5632418-2.2830264-.0022514l-.3777513-.3274735C7.01712282 20.4088515 4.25 16.0278108 4.25 12c0-5.38477631 4.36522369-9.75 9.75-9.75Zm0 1.5c-4.55634919 0-8.25 3.69365081-8.25 8.25 0 3.5020564 2.54839906 7.5368033 7.714548 12.0569728l.3725429.3229584c.0936914.0804678.2321011.0804678.3257926 1e-7C19.5789268 19.7283136 22.25 15.5853418 22.25 12c0-4.55634919-3.6936508-8.25-8.25-8.25Zm0 4.5c2.0710678 0 3.75 1.67893219 3.75 3.75 0 2.0710678-1.6789322 3.75-3.75 3.75s-3.75-1.6789322-3.75-3.75c0-2.07106781 1.6789322-3.75 3.75-3.75Zm0 1.5c-1.2426407 0-2.25 1.0073593-2.25 2.25s1.0073593 2.25 2.25 2.25 2.25-1.0073593 2.25-2.25S15.2426407 9.75 14 9.75Z" />
-                    </svg>
+                    </svg> */}
                     { data.main ? <p>{ data.name }</p> : ' ' }
                 </div>
                 <div className={ s.temp }>
@@ -50,13 +87,6 @@ const TodayWeather = ( ) => {
                     </svg>
                     { data.main ? <p>{ Math.floor(data.main.temp - 273) }°C</p> : ' ' }
                 </div>
-                {/* <div className={s.time }>
-                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 123 123">
-                        <path fill="#fff" fillRule="evenodd" d="M61 0a61 61 0 1 1 0 123A61 61 0 0 1 61 0zm-7 38c0-10 15-10 15 0v25l16 9c8 5 1 17-7 12L58 74c-2-1-4-4-4-6V38z"/>
-                    </svg>
-                   <h1>16:50</h1> 
-                </div> */}
-
 
             </div>
             
