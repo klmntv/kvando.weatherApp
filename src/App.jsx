@@ -1,7 +1,6 @@
 import 'normalize.css'
 import './App.css'
-import { useState } from 'react';
-import TodayWeather from './components/Weather'
+import TodayWeather from './components/Weather/Weather'
 
 function App() {
 
