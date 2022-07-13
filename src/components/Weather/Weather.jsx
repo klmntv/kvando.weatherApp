@@ -11,38 +11,38 @@ const TodayWeather = () => {
     const [status,setStatus] = useState(null)
   
    
-    // const urlForCoord = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5dbc1dc5eb96460925f3794ad1764fe8` //урл для запроса с координатами
+    const urlForCoord = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5dbc1dc5eb96460925f3794ad1764fe8` //урл для запроса с координатами
     
-    // const getGeolocation = () => { //получаем координаты (deprecated)
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition((position) => {
-    //             setLat(position.coords.latitude);
-    //             setLon(position.coords.longitude);
-    //             localStorage.setItem('lat',JSON.stringify(position.coords.latitude))// записываем их в хранилище
-    //             localStorage.setItem('lon', JSON.stringify(position.coords.longitude))
-    //         },
-    //             () => {
-    //                 setStatus('Unable to retrieve your location');
-    //             });
-    //     } else {
-    //         setStatus('Geolocation is not supproted by your broswer')
-    //     }
-    // }
+    const getGeolocation = () => { //получаем координаты (deprecated)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setLat(position.coords.latitude);
+                setLon(position.coords.longitude);
+                localStorage.setItem('lat',JSON.stringify(position.coords.latitude))// записываем их в хранилище
+                localStorage.setItem('lon', JSON.stringify(position.coords.longitude))
+            },
+                () => {
+                    setStatus('Unable to retrieve your location');
+                });
+        } else {
+            setStatus('Geolocation is not supproted by your broswer')
+        }
+    }
 
-    // useEffect(() => { //хук для отправки запроса к погодной апи после получения координат пользователя
-    //     const fetchCurrentWeather = () => {
-    //         fetch(urlForCoord)
-    //             .then((response) => response.json())
-    //             .then((data) => {
-    //                 setData(data)
-    //             })
-    //     }
-    //     if (lat && lon) {
-    //         fetchCurrentWeather();
-    //     }
-    // }, [lat,lon]);
+    useEffect(() => { //хук для отправки запроса к погодной апи после получения координат пользователя
+        const fetchCurrentWeather = () => {
+            fetch(urlForCoord)
+                .then((response) => response.json())
+                .then((data) => {
+                    setData(data)
+                })
+        }
+        if (lat && lon) {
+            fetchCurrentWeather();
+        }
+    }, [lat,lon]);
 
-    // getGeolocation() //что-то не так
+    getGeolocation() //что-то не так
    
     return (
 
@@ -52,14 +52,14 @@ const TodayWeather = () => {
 
                 <div className={ s.loc }>
                     { svgLoc }
-                    { data.main ? <p>{ data.name }</p> : ' ' } 
+                    { data.main ? <p>{ data.name }</p> : ' undefined' } 
                     {/* 👆👆👆 
                             проверяем пришел ли ответ от сервера*/}
                 </div>
                 
                 <div className={ s.temp }>
                     {svgTemp}
-                    { data.main ? <p>{ Math.floor(data.main.temp - 273) }°C</p> : ' ' }
+                    { data.main ? <p>{ Math.floor(data.main.temp - 273) }°C</p> : ' undefined' }
                     {/* 👆👆👆 
                             проверяем пришел ли ответ от сервера(температура приходит в кельвинах, переводим в цельсии + округляем до целого (можно попробовать отредактировать запрос для получения температуры в нужных единицах) )*/}
                 </div>
@@ -70,17 +70,17 @@ const TodayWeather = () => {
 
                 <div className={ s.wind }>
                     {svgWind}
-                    { data.wind ? <p>{ data.wind.speed } m/s</p> : '' }
+                    { data.wind ? <p>{ data.wind.speed } m/s</p> : 'undefined' }
                 </div>
                 
                 <div className={ s.press }>
                     {svgPress}
-                    { data.main ? <p>{ data.main.pressure } hPa</p> : ' ' }
+                    { data.main ? <p>{ data.main.pressure } hPa</p> : ' undefined' }
                 </div>
                 
                 <div className={ s.hum }>
                     {svgHum}
-                    { data.main ? <p>{ data.main.humidity } %</p> : ' ' }
+                    { data.main ? <p>{ data.main.humidity } %</p> : 'undefined ' }
                 </div>
                 
             </div>

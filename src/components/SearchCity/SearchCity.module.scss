@@ -1,20 +1,20 @@
 @import '../../styles/mixins.scss';
 @import '../../styles/variables.scss';
-fieldset {
+
+form {
     @include flex;
-    border: none;
     
     input {
         @include glassmorphism;
         color: $base;
-        text-align: center;    
-        margin: 20px 0px 10px 0px;
+        margin: $mrgn;
+        font-size: $ui_fnt;
         width: 30%;
+        text-align: center;
            
-        &:placeholder {
-            font-size: $ui_fnt;
-            color: aliceblue;
-            }
+        &::placeholder {
+            color: $base;
+        }
                 
         &:focus::-webkit-input-placeholder {
             color: transparent;
@@ -22,13 +22,12 @@ fieldset {
         &:focus {
             background: $glss_accnt;
             outline: none;
-            }
         }
-        button {
+    }
+
+    button {
             @include glassmorphism;
-            color: $base;
-            margin: 10px;
-            padding: 5px;
+            color: $base; 
             font-size: $ui_fnt;
             text-transform: lowercase;
             cursor: pointer;
@@ -41,5 +40,5 @@ fieldset {
             &:hover {
                 background-color: $glss_accnt
             }
-        }
+    }
 }

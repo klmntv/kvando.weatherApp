@@ -1,19 +1,24 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
 
 .weather {
     @include flex;
     align-items:stretch;
-    font-size: calc(16px + 2vmin);
+    font-size: $fnt_base;
 }
 .wrapper {
     @include flex;
+    
     @include glassmorphism;
     flex-direction: row;
-    height: 20vmin;
-    margin: calc(20px + 2vmin);
-    padding: 10px;
+    height: 30vmin;
+    margin: $mrgn;
 }
 
-.loc .temp .wind .press .hum {
-@include flex
+.loc,
+.temp, 
+.wind, 
+.press, 
+.hum  {
+    @include flex
 }

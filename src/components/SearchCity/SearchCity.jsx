@@ -25,21 +25,19 @@ import s from './SearchCity.module.scss'
     };
 
   return (
-      <fieldset>
+      <form>
           <input
               value={ location }
               onChange={ e  => setLocation(e.target.value)
               }
               onKeyPress={ searchLocation }
               placeholder='Enter Location'
-              type="text"
           />
 
           <button disabled={ true } //кнопка для сохранения городов
               onClick={ handleToggle }
           >Save</button>
-
-      </fieldset>
+      </form>
   )
 }
 // export { data,setData }

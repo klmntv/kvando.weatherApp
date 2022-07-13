@@ -1,7 +1,8 @@
+@import '../../styles/mixins.scss';
 
 svg {
-    display: block;
     height: 10vmin;
-    margin: 10px;
     fill:aliceblue;
+    margin:$mrgn;
+    @include pulse;
 }
