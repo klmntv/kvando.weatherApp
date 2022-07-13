@@ -1,0 +1,45 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+fieldset {
+    @include flex;
+    border: none;
+    
+    input {
+        @include glassmorphism;
+        color: $base;
+        text-align: center;    
+        margin: 20px 0px 10px 0px;
+        width: 30%;
+           
+        &:placeholder {
+            font-size: $ui_fnt;
+            color: aliceblue;
+            }
+                
+        &:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+        &:focus {
+            background: $glss_accnt;
+            outline: none;
+            }
+        }
+        button {
+            @include glassmorphism;
+            color: $base;
+            margin: 10px;
+            padding: 5px;
+            font-size: $ui_fnt;
+            text-transform: lowercase;
+            cursor: pointer;
+    
+            &:active {
+                box-shadow: 0px 2px 4px $base;
+                transform: scale(0.98);
+            }
+    
+            &:hover {
+                background-color: $glss_accnt
+            }
+        }
+}

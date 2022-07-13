@@ -1,5 +1,5 @@
 import 'normalize.css'
-import './App.css'
+import './styles/App.scss'
 import TodayWeather from './components/Weather/Weather'
 
 function App() {

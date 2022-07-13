@@ -1,104 +1,19 @@
-//пеесобрать стили 
+@import '../../styles/mixins.scss';
 
 .weather {
-    display: flex;
-    flex-direction: column;
-    justify-content:space-between ;
+    @include flex;
+    align-items:stretch;
     font-size: calc(16px + 2vmin);
-    
-    .wrapper {
-        height: 20vmin;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        margin:10px;
-        padding:10px;
-    }
 }
-p{
-    margin:0px;
-}
-svg{
-    display:block;
-    height:10vmin;
-    margin: 10px;
-}
-button {
-    margin:10px;
-    display: block;
-    padding: 5px;
-    border: 0;
-    text-decoration: none;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(30px);
-    color: rgba(255, 255, 255, 0.8);
-    font-size: calc(6px + 2vmin);
-    letter-spacing: 2px;
-    cursor: pointer;
-    text-transform:lowercase;
-    // &:active {
-    //         box-shadow: 0px 4px 8px rgb(255,255,255);
-    //         transform: scale(0.98);
-    //     }
-}
-// .slider{
-//     &:after{
-//         background-color: rgba(255, 255, 255, 1)
-//     }
-// }
-
-// button:hover {
-//     background-color: rgba(255, 255, 255, 0.3);
-// }
-
-fieldset{
-    .slider{
-        display: inline-block;
-    }
-    border: none;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+.wrapper {
+    @include flex;
+    @include glassmorphism;
+    flex-direction: row;
+    height: 20vmin;
+    margin: calc(20px + 2vmin);
+    padding: 10px;
 }
 
-// переделать на миксинах
-.loc{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-.temp{
-    display: flex;
-    flex-direction: column;
-     align-items: center;
-     justify-content: space-between;
-}
-.wind{
-    display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-}
-.press{
-    display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-}
-.hum{
-    display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+.loc .temp .wind .press .hum {
+@include flex
 }
