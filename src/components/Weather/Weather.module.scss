@@ -1,3 +1,5 @@
+//пеесобрать стили 
+
 .weather {
     display: flex;
     flex-direction: column;
@@ -30,7 +32,7 @@ svg{
 button {
     margin:10px;
     display: block;
-    padding: 10px;
+    padding: 5px;
     border: 0;
     text-decoration: none;
     border-radius: 15px;
@@ -38,14 +40,14 @@ button {
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(30px);
     color: rgba(255, 255, 255, 0.8);
-    font-size: calc(10px + 2vmin);
+    font-size: calc(6px + 2vmin);
     letter-spacing: 2px;
     cursor: pointer;
-    text-transform: uppercase;
-    &:active {
-            box-shadow: 0px 4px 8px rgb(255,255,255);
-            transform: scale(0.98);
-        }
+    text-transform:lowercase;
+    // &:active {
+    //         box-shadow: 0px 4px 8px rgb(255,255,255);
+    //         transform: scale(0.98);
+    //     }
 }
 // .slider{
 //     &:after{
@@ -53,9 +55,9 @@ button {
 //     }
 // }
 
-button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
+// button:hover {
+//     background-color: rgba(255, 255, 255, 0.3);
+// }
 
 fieldset{
     .slider{
@@ -68,6 +70,8 @@ fieldset{
     align-items: center;
     justify-content: space-between;
 }
+
+// переделать на миксинах
 .loc{
     display: flex;
     flex-direction: column;
